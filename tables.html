@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MySql tables</title>
+        <style>
+            :root {
+                --mporntoRodoKokkino: #f55;
+            }
+            /* SELECTOR { RULE: VALUE; } */
+            h1 {
+                color: var(--mporntoRodoKokkino)
+            }
+
+            #table1 {
+                
+            }
+
+            #table1 thead {
+                background-color: var(--mporntoRodoKokkino);
+            }
+
+            #table2 thead {
+                background-color: aquamarine;
+            }
+
+            #table1 > tfoot, #table2 > tfoot{
+                background-color: #ccc;
+            }
+
+            td, th {
+                padding: 5px 12px;
+            }
+
+            .withBorder, .withBorder th, .withBorder td {
+                border: 2px solid black;
+            }
+
+            .withBorder {
+                border-collapse: collapse;;
+            }
+    
+        </style>
+    </head>
+    <body>
+        <h1>Databases</h1>
+        <h2>SQL Commands and Tables</h2>
+        <section>
+            <h3>Customer<br>Table</h3>
+            <pre>
+    create table customer(
+        ccode int unsigned auto_increment,
+        cname varchar(20) not null,
+        primary key (ccode)
+    );
+            </pre>
+            <table id="table1" class="withBorder">
+                <thead>
+                    <tr>
+                        <th colspan="2">Customer</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>PK</strong> ccode</td>
+                        <td>int unsigned</td>
+                    </tr>
+                    <tr>
+                        <td>cname</td>
+                        <td>varchar(20)</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">indexes</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+        <hr>
+        <section>
+            <h3>Salesman<br>Table</h3>
+            <pre>
+    create table salesman(
+        scode int unsigned not null,
+        sname varchar(20) not null,
+        scity varchar(15) null,
+        scomm decimal(5,2) unsigned null,
+        primary key (scode)
+    );
+            </pre>
+            <table id="table2" class="withBorder">
+                <thead>
+                    <tr>
+                        <th colspan="2">Salesman</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>PK</strong> scode</td>
+                        <td>int unsigned</td>
+                    </tr>
+                    <tr>
+                        <td>sname</td>
+                        <td>varchar(20)</td>
+                    </tr>
+                    <tr>
+                        <td>scity</td>
+                        <td>varchar(15)</td>
+                    </tr>
+                    <tr>
+                        <td>scomm</td>
+                        <td>decimal(5,2)</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">indexes</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+    </body>
+</html>
