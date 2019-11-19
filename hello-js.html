@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+    
+        function arrays(){
+            let languages = [false, 42, "java"];
+            languages.push("HTML", "CSS", 10);
+            languages.pop();
+            languages.shift();
+            languages.shift();
+            languages.unshift("Javascript");
+            languages[2] = "HTML5";
+            // languages[2] += "5";
+            console.log(languages[2]);
+            document.write(languages);
+
+            console.log("\nFOR:")
+            for(let counter = 0; counter < languages.length; counter++){
+                console.log(languages[counter]);
+            }
+
+            console.log("\nforEach:")
+            languages.forEach(i=>console.log(i));
+            
+            console.log("\nFOR OF:")
+            for(item of languages){
+                console.log(item);
+            }
+
+            console.log("\nFOR IN:")
+            for(item in languages){
+                console.log(languages[item]);
+            }
+
+
+            const obj = {key1: 11, key2: 22};
+
+            Object.keys(obj);
+
+            console.log("\nFOR OF Object.keys");
+            for(key of Object.keys(obj)){
+                console.log(key);
+            }
+
+            console.log("\nFOR IN obj")
+            for(key in obj){
+                console.log(key);
+            }
+        }
+        arrays();
+
+        function objects(){
+            const user = {
+                firstname: "k",
+                lastname: "poim",
+                showFullname() {
+                    console.log(this.firstname);
+                }
+            }
+            user.showFullname();
+            // this.user.firstname.
+        
+        }
+        objects();
+    </script>
+</body>
+</html>
