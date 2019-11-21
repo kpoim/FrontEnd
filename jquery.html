@@ -13,16 +13,62 @@
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous">
-    </script>
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+        </script>
     <script>
-        if(window.jQuery){
 
-            
+        function init() {
 
+            // const title = document.querySelector('h1');
+            // title.innerText = 'JavaScript';
+            const title = $('h1');
+            title.text("JavaScript");
+            // console.log(title);
+            title.append('  <mark>ES6</mark>');
+            const paragraph = $($('p')
+                .css("background-color", "#ccc")
+                .text('the end').get(0))
+                .text('before the end');
+            console.log(paragraph);
+            title.fadeOut(10000);
+            $(document).click(() => {
+                $('h1').css("display", "block");
+            });
+
+
+            printCountry = (res) =>{
+                $('body').append(`<h3>${res.name}</h3>`).append(`<strong>Population: ${prettyPopulation(res.population)}</strong><br>`).append($(`<img src="${res.flag}" alt="flag"/><br><hr><br>`));
+                $('img').css('max-width', '40vw').css('border', '2px solid black');
+            };
+
+            prettyPopulation = (pop) =>{
+                let counter = 0;
+                return `${pop}`.split('').reduceRight((prev, next) => 
+                    `${next}${counter++ === 3 ? (counter = 1, '.') : ''}${prev}`
+                ,'');
+            };
+
+            console.log(1);
+            console.log(2);
+            const URL = "https://restcountries.eu/rest/v2/alpha?codes=iq;ir;mx;ch;jp;bd;ar;ag;bn;ba;gr;de;usa";
+            $.ajax({
+                url: URL,
+                method: 'get',
+                cors: 'no-cors',
+                success: (res, req) => {
+                    console.log(res);
+                    console.log(req); 
+                    res.forEach((country) => printCountry(country));
+                }
+            });
+            console.log(3);
+            console.log(4);
         }
+        $(init);
+
     </script>
+    <p>not EOF</p>
+    <p>EOF</p>
 </body>
 
 </html>

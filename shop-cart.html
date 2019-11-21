@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+        integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
     <title>Shop</title>
     <style>
         article {
@@ -24,18 +26,31 @@
         .imgContainer {
             display: flex;
             justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .addToCart {
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
         }
     </style>
 </head>
 
 <body>
 
-
-
+    <h1>Shop</h1>
+    Shopping cart: <i class="fas fa-shopping-cart"></i>
+    <strong id="cartLength">0</strong><br>
+    Price: <strong id="price">0</strong> &euro;
+    <br><br>
+    <main></main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
         </script>
     <script>
+        const cart = [];
         let products = [
             {
                 "imgUrl": "https://guesseu.scene7.com/is/image/GuessEU/M63H24W7JF0-L302-ALTGHOST?wid=1500&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0",
@@ -64,21 +79,7 @@
             }
         ];
 
-        // function displayProduct(product){
-        //     console.log(product.name);
 
-        //     const p = document.createElement("p");
-        //     const img = document.createElement("img");
-        //     const article = document.createElement("article");
-        //     p.innerHTML = `Name: ${product.name} | Price: <mark>${product.price}</mark>`;
-        //     img.src = product.imgUrl;
-        //     img.alt = product.name;
-        //     img.setAttribute("width", 100)
-        //     article.appendChild(p);
-        //     article.appendChild(img);
-        //     console.log(article);
-        //     document.body.appendChild(article);
-        // }
 
         $(init);
 
@@ -88,23 +89,35 @@
                 method: 'get',
                 cors: 'no-cors',
                 success: res => {
-                    console.log(res);
-                    res.forEach(element => {
-                        createArticle(element);
+                    res.forEach((element, index) => {
+                        createArticle(element, index);
                     });
                     const articles = $('article');
-                    $($(articles).get(articles.length-1)).css("border-right-width", '2px');
+                    $($(articles).get(articles.length - 1)).css("border-right-width", '2px');
+
+                    document.querySelectorAll('.fa-cart-plus').forEach(item => {    
+                        item.classList.add('addToCart')
+                    });
                 },
             });
 
+
         };
 
-        function createArticle(product) {
+        function createArticle(product, index) {
             const p = document.createElement("p");
+            const addBtn = $('<i class="fa fa-cart-plus" aria-hidden="true"></i>');
             const imgContainer = document.createElement("div");
             const img = document.createElement("img");
             const article = document.createElement("article");
+            const main = document.querySelector('main');
             p.innerHTML = `Name: ${product.name} | Price: <mark>${product.price}</mark>`;
+            addBtn.click(function (e) {
+                cart.push(product);
+                $('#cartLength').text(cart.length);
+                let price = $('#price');
+                price.text(parseFloat(price.text()) + product.price);
+            });
             img.src = product.imgUrl;
             img.alt = product.name;
             img.setAttribute("width", 100);
@@ -112,7 +125,8 @@
             imgContainer.appendChild(img);
             article.appendChild(p);
             article.appendChild(imgContainer);
-            document.body.appendChild(article);
+            main.appendChild(article);
+            $('.imgContainer').eq(index).append(addBtn);
         }
     </script>
 </body>
