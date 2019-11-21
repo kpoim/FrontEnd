@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM</title>
+</head>
+<body>
+    <h1 id="title">DOM</h1>
+    <p id="post">
+        <strong>Post title:</strong> About DOM.
+    </p>
+
+    <ul id="list">
+        <li class="item"><strong>Java</strong></li>
+        <li class="item"><strong>MySQL</strong></li>
+        <li class="item"><strong>Nodejs</strong></li>
+        <li class="item"><strong>PHP</strong></li>
+    </ul>
+
+    <div class="box"></div>
+    <script>
+
+        const box = document.querySelector(".box");
+        box.style.height = '40px';
+        box.style.width = '40px';
+        box.style.backgroundColor = "magenta";
+        box.style.position = "relative";
+        // box.style.left = "0";
+        let distance = 0;
+        let direction = "right";
+        function moveLeft(){
+            box.style.left = distance + "px";
+            
+            if(distance === 500)
+                direction = "left";
+            else if (distance === 0)
+                distance = "right";
+
+            direction === "right" ? distance++ : distance--;
+
+        }
+
+        setInterval(moveLeft, 5);
+        // interval.st
+        
+
+        const items = document.querySelectorAll('li.item');
+        function changeColor(){
+            items.forEach(item => {
+                item.style.color = "#" + Math.floor(Math.random() * 999);
+                item.style.fontSize = Math.floor(Math.random()*40) + 20 + "px";
+            });
+        }
+        
+        let x = setInterval(changeColor, 100);
+
+        const ul = document.querySelector("ul");
+        let running = true;
+        
+        ul.addEventListener('click', ()=>{
+            if(running){
+                clearInterval(x);
+            } else {
+                x = setInterval(changeColor, 100);
+            }
+            running = !running;
+            // clearInterval(x);
+        });
+        ul.onlo
+        
+        // setTimeout(() => {
+        //     ul.style.backgroundColor = "firebrick";
+        // }, 5000);
+
+        const title = document.getElementById('title');
+        console.log(title);
+
+        const post = document.getElementById('post');
+        console.log(post.innerHTML);
+        console.log(post.innerText);
+    </script>
+</body>
+</html>

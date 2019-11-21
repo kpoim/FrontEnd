@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON</title>
+</head>
+<body>
+    <h1>JSON</h1>
+
+    <script>
+    
+        // CLIENT
+        const userProfile = {
+            name: "John Doe",
+            age: 33,
+            married: false,
+            courses: [
+                'Java',
+                'MySQL'
+            ],
+        };
+
+        const jsonObj = JSON.stringify(userProfile);
+        console.log(jsonObj);
+
+
+        // SERVER
+        const receivedData = JSON.parse(jsonObj);
+        console.log(receivedData);
+        receivedData.courses.push('Javascript');
+        const dataJSON = JSON.stringify(receivedData);
+
+        // CLIENT
+        const newData = JSON.parse(dataJSON);
+        console.log(newData);
+
+        const arr = [1,2,3,4,"abc", 'efd'];
+        const arrJSON = JSON.stringify(arr);
+        console.log(arrJSON);
+
+        function getFunc(){
+            return ()=>1+1;
+        }
+
+        const obj = {
+            key: getFunc()
+        };
+
+    </script>
+</body>
+</html>

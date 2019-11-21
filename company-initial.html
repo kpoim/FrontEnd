@@ -1,5 +1,5 @@
-<!-- A Pen created at CodePen.io. You can find this one at https://codepen.io/kostasx/pen/PgGjRM. -->
 <!DOCTYPE html>
+<!-- A Pen created at CodePen.io. You can find this one at https://codepen.io/kostasx/pen/PgGjRM. -->
 <html lang="en">
 
 <head>
@@ -196,6 +196,8 @@
         const day = new Date().getDay();
         const date = new Date().getDate();
         const month = new Date().getMonth();
+
+        const isOpen = hours<8 && hours>20 && day>0 && day<6 && (month == 11 && date == 25);
     
     </script>
 
@@ -210,7 +212,7 @@
         <script>
             document.write(
                 "<br>",
-                (hours<8 && hours>20 && day>0 && day<6 && (month != 11 && date !=25))
+                isOpen
                     ? '<div class="btn">We are Closed</div>'
                     : '<div class="btn open">We are Open</div>',
                 "<br>"
